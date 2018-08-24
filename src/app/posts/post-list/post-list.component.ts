@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-post-list",
@@ -11,5 +11,5 @@ export class PostListComponent {
 //    { title: "First Post", content: "This is the first post content" },
 //    { title: "First Post", content: "This is the first post content" }
 //  ];
-  posts = [];
+  @Input() posts = [];
 }
