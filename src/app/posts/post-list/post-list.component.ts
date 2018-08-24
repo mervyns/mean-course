@@ -11,5 +11,5 @@ export class PostListComponent {
 //    { title: "First Post", content: "This is the first post content" },
 //    { title: "First Post", content: "This is the first post content" }
 //  ];
-  @Input() posts = [];
+  @Input() posts: Post[] = [];
 }
