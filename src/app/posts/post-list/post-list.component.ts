@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   //    { title: "First Post", content: "This is the first post content" }
   //  ];
   posts: Post[] = [];
+  isLoading: false;
   private postsSub: Subscription;
 
   constructor(
