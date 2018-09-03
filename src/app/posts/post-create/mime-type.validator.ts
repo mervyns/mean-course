@@ -9,7 +9,7 @@ export const mimeType = (
   }
   const file = control.value as File;
   const fileReader = new FileReader();
-  const frObs = Observable.create((observer: Observer) => {
+  const frObs = Observable.create((observer: Observer<{ [key: string]: any }>) => {
     fileReader.addEventListener("loadend", () => {
       const arr = new Uint8Array(fileReader.result).subarray(0, 4);
       let header = "";
@@ -35,7 +35,7 @@ export const mimeType = (
       if (isValid) {
         observer.next(null);
       } else {
-        observer.next({ invalidMimeType });
+        observer.next({ invalidMimeType: true });
       }
         observer.complete();
     });

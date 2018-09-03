@@ -15,7 +15,7 @@ export class PostCreateComponent implements OnInit {
   enteredTitle = "";
   enteredContent = "";
   post: Post;
-  isLoading: false;
+  isLoading = false;
   form: FormGroup;
   imagePreview: string;
   private mode = "create";
@@ -42,22 +42,21 @@ export class PostCreateComponent implements OnInit {
         this.mode = "edit";
         this.postId = paramMap.get("postId");
         this.isLoading = true;
-        this.post = this.postsService
-          .getPost(this.postId)
-          .subscribe(postData => {
-            this.isLoading = false;
-            this.post = {
-              id: postData._id,
-              title: postData.title,
-              content: postData.content,
-              imagePath: postData.imagePath
-            };
-            this.form.setValue({
-              title: this.post.title,
-              content: this.post.content,
-              image: this.post.imagePath
-            });
+        this.postsService.getPost(this.postId).subscribe(postData => {
+          this.isLoading = false;
+          this.post = {
+            id: postData._id,
+            title: postData.title,
+            content: postData.content,
+            imagePath: postData.imagePath,
+            creator: postData.creator
+          };
+          this.form.setValue({
+            title: this.post.title,
+            content: this.post.content,
+            image: this.post.imagePath
           });
+        });
       } else {
         this.mode = "create";
         this.postId = null;
